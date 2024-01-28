@@ -10,12 +10,15 @@ exports.getAllReviews = catchAsync(async (req, res, next) => {
   });
 });
 exports.createReview = catchAsync(async (req, res, next) => {
-  const { review, tour, rating } = req.body;
+  // eslint-disable-next-line prefer-const
+  let { review, tour, rating, user } = req.body;
+  if (!tour) tour = req.params.tourId;
+  if (!user) user = req.user.id;
   const newReview = await Review.create({
     review,
     tour,
     rating,
-    user: req.user.id,
+    user,
   });
   res.status(201).json({
     status: 'success',
