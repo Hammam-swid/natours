@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -46,8 +47,8 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
   res.status(204).json({
     status: 'success',
-    data: null
-  })
+    data: null,
+  });
 });
 
 exports.createUser = (req, res) => {
@@ -68,9 +69,4 @@ exports.updateUser = (req, res) => {
     message: 'this resource is not defined yet',
   });
 };
-exports.deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'this resource is not defined yet',
-  });
-};
+exports.deleteUser = factory.deleteOne(User);
