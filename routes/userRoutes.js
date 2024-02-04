@@ -9,6 +9,7 @@ const {
   updateMe,
   deleteMe,
   getMe,
+  uploadUserPhoto,
 } = require('../controllers/userControllers');
 const {
   signup,
@@ -21,6 +22,7 @@ const {
   logout,
 } = require('../controllers/authController');
 
+
 const router = express.Router();
 
 router.post('/signup', signup);
@@ -32,7 +34,7 @@ router.patch('/resetPassword/:token', resetPassword);
 router.use(protect);
 
 router.patch('/updateMyPassword', updatePassword);
-router.patch('/updateMe', updateMe);
+router.patch('/updateMe', uploadUserPhoto, updateMe);
 router.delete('/deleteMe', deleteMe);
 router.get('/me', getMe, getUser);
 
