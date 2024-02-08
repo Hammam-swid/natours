@@ -23,7 +23,7 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log('DB connection successful'));
+  .then(() =>  console.log('DB connection successful'));
 
 const server = app.listen(process.env.PORT, () => {
   console.log('listening on http://localhost:8000');

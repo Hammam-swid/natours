@@ -44,7 +44,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordConfirm,
   });
   const url = `${req.protocol}://${req.get('host')}`;
-  console.log(url);
+  // console.log(url);
   await new Email(newUser, url).sendWelcome();
   createSendToken(newUser, 201, res);
 });
@@ -174,7 +174,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const user = await User.findById(req.user.id).select('+password');
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
     return next(new AppError('Your current password is wrong', 401));

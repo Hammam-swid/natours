@@ -40,14 +40,14 @@ exports.getLoginForm = (req, res, next) => {
 };
 
 exports.getMyTours = catchAsync(async (req, res, next) => {
-  console.log(Booking)
+  // console.log(Booking)
   const bookings = await Booking.find({ user: req.user.id });
   const tourIds = bookings.map((el) => el.tour);
   const tours = await Tour.find({ _id: { $in: tourIds } });
   res.status(200).render('overview', {
     title: `${req.user.name.split(' ')[0]} Tours`,
-    tours
-  })
+    tours,
+  });
 });
 
 exports.getAccount = (req, res, next) =>

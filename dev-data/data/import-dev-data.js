@@ -23,19 +23,19 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log('DB connection successful');
+    // console.log('DB connection successful');
   });
 
 const importData = async () => {
   try {
-    console.log(JSON.parse(tours)[0].locations);
+    // console.log(JSON.parse(tours)[0].locations);
     await Tour.create(JSON.parse(tours));
     await User.create(JSON.parse(users), { validateBeforeSave: false });
     await Review.create(JSON.parse(reviews));
-    console.log('data inserted successfully');
+    // console.log('data inserted successfully');
     process.exit();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 const deleteData = async () => {
@@ -43,10 +43,10 @@ const deleteData = async () => {
     await Tour.deleteMany();
     await User.deleteMany();
     await Review.deleteMany();
-    console.log('data deleted successfully');
+    // console.log('data deleted successfully');
     process.exit();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
