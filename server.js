@@ -26,7 +26,7 @@ mongoose
   .then(() =>  console.log('DB connection successful'));
 
 const server = app.listen(process.env.PORT, () => {
-  console.log('listening on http://localhost:8000');
+  console.log(`listening on http://localhost:${process.env.PORT}`);
 });
 
 process.on('unhandledRejection', (err) => {
